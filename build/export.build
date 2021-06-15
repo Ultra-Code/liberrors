@@ -1,0 +1,6 @@
+$out_root/
+{
+  include liberrors/
+}
+
+export $out_root/liberrors/$import.target
