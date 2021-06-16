@@ -25,7 +25,7 @@ cxx.poptions =+ "-I$out_root" "-I$src_root"
 
 # Export options.
 #
-lib{errors}:
+libs{errors}:
 {
   cxx.export.poptions = "-I$out_root" "-I$src_root"
   cxx.export.libs = $intf_libs
@@ -38,9 +38,9 @@ libs{errors}: cxx.export.poptions += -DLIBERRORS_SHARED
 # for details on the version.* variable values.
 #
 if $version.pre_release
-  lib{errors}: bin.lib.version = @"-$version.project_id"
+  libs{errors}: bin.lib.version = @"-$version.project_id"
 else
-  lib{errors}: bin.lib.version = @"-$version.major.$version.minor"
+  libs{errors}: bin.lib.version = @"-$version.major.$version.minor"
 
 # Install into the liberrors/ subdirectory of, say, /usr/include/
 # recreating subdirectories.
