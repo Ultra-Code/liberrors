@@ -5,14 +5,6 @@
 using namespace boost::ut;
 
 auto
-abort_tracing() -> void
-{
-
-  errors::trace_on_abort();
-  std::abort();
-}
-
-auto
 asserting() -> void
 {
   errors::assert_that(1 == 2, "1 is not equal to 2");
@@ -27,6 +19,7 @@ main() -> int
   catch (errors::recoverable_err const &ex)
     {
       std::cerr << ex.what();
+      ex.print_stacktrace(std::cerr);
     }
   catch (std::exception const &ex)
     {
