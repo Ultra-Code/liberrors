@@ -8,6 +8,9 @@
 
 #include <liberrors/export.hxx>
 
+#define BACKWARD_HAS_DW 1
+#include <backward.hpp>
+
 /**
  * @namespace errors
  * @brief namespace containing functions for error handling
@@ -29,17 +32,18 @@ namespace errors
               std::source_location loc
               = std::source_location::current()) noexcept -> void;
 
-  auto
-  trace_on_abort() -> void;
-
-  class recoverable_err : std::exception
+  class recoverable_err : std::runtime_error
   {
-    std::string message;
+    backward::StackTrace stacktrace_;
 
   public:
     explicit recoverable_err(std::string_view msg,
                              std::source_location loc
                              = std::source_location::current()) noexcept;
+
+    auto
+    print_stacktrace(std::ostream &stream)const noexcept -> void;
+
     [[nodiscard]] auto
     what() const noexcept -> const char * override;
   };
