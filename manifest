@@ -9,5 +9,5 @@ email: mega.alpha100@gmail.com
 #build-error-email: mega.alpha100@gmail.com
 depends: * build2 >= 0.13.0
 depends: * bpkg >= 0.13.0
-depends: * fmt ^ 7.1.3
+depends: * fmt >= 8.0.1
 #depends: libhello ^1.0.0
