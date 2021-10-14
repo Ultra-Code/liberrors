@@ -1,8 +1,14 @@
 #include <liberrors/version.hxx>
 #include <liberrors/errors.hxx>
-#include <ut.hpp>
+#include <iostream>
 
-using namespace boost::ut;
+auto
+abort_tracing() -> void
+{
+
+  errors::trace_on_abort();
+  std::abort();
+}
 
 auto
 asserting() -> void
@@ -19,7 +25,6 @@ main() -> int
   catch (errors::recoverable_err const &ex)
     {
       std::cerr << ex.what();
-      ex.print_stacktrace(std::cerr);
     }
   catch (std::exception const &ex)
     {
