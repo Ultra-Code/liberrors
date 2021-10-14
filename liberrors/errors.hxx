@@ -32,7 +32,7 @@ namespace errors
               std::source_location loc
               = std::source_location::current()) noexcept -> void;
 
-  class recoverable_err : std::runtime_error
+  class recoverable_err  final: std::runtime_error
   {
     backward::StackTrace stacktrace_;
 
@@ -45,6 +45,6 @@ namespace errors
     print_stacktrace(std::ostream &stream)const noexcept -> void;
 
     [[nodiscard]] auto
-    what() const noexcept -> const char * override;
+    what() const noexcept -> const char * final;
   };
 } // namespace errors
